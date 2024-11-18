@@ -1,13 +1,11 @@
-import { InputPassword } from "@/components/base/form/input.password";
 import {
 	FormControl,
-	FormDescription,
+	FormFeedback,
 	FormField,
 	FormItem,
-	FormLabel,
-	FormMessage
+	FormLabel
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Input, PasswordInput } from "@/components/ui/input";
 import { cn, List } from "@/utils";
 import React from "react";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
@@ -16,8 +14,7 @@ export interface FieldConfig<T extends FieldValues> {
 	name: Path<T>;
 	type: React.ComponentPropsWithoutRef<"input">["type"];
 	label?: React.ReactNode | string;
-	descriptions?: React.ReactNode | undefined;
-	isButtonLabel?: boolean;
+	descriptions?: string;
 	placeholder?: string | undefined;
 }
 
@@ -27,7 +24,6 @@ interface FormFieldListProps<T extends FieldValues>
 	fields: Array<FieldConfig<T>>;
 	classNameContainer?: string | undefined;
 }
-
 export function FormFieldList<T extends FieldValues>({
 	fields,
 	control,
@@ -39,10 +35,7 @@ export function FormFieldList<T extends FieldValues>({
 
 	return (
 		<List lists={fields}>
-			{(
-				{ label, name, type, descriptions, isButtonLabel, placeholder },
-				key
-			) => (
+			{({ label, name, type, descriptions, placeholder }, key) => (
 				<FormField
 					key={key}
 					name={name}
@@ -52,11 +45,10 @@ export function FormFieldList<T extends FieldValues>({
 							{label && <FormLabel>{label}</FormLabel>}
 							<FormControl>
 								{type === "password" ? (
-									<InputPassword
+									<PasswordInput
 										{...{
 											...field,
 											...rest,
-											isButtonLabel,
 											placeholder
 										}}
 									/>
@@ -66,12 +58,7 @@ export function FormFieldList<T extends FieldValues>({
 									/>
 								)}
 							</FormControl>
-							{descriptions && (
-								<FormDescription>
-									{descriptions}
-								</FormDescription>
-							)}
-							<FormMessage />
+							<FormFeedback>{descriptions}</FormFeedback>
 						</FormItem>
 					)}
 				/>

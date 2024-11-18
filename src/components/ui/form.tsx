@@ -169,6 +169,33 @@ const FormMessage = React.forwardRef<
 });
 FormMessage.displayName = "FormMessage";
 
+/**
+ *
+ * ----------------------------------------------------------
+ * Custom Form Components
+ * ----------------------------------------------------------
+ *
+ */
+export const FormFeedback = React.forwardRef<
+	HTMLParagraphElement,
+	React.ComponentPropsWithoutRef<"p">
+>(({ className, children: prevChildren, ...rest }, ref) => {
+	const { error, formMessageId: id } = useFormField();
+	const children = error ? String(error.message) : prevChildren;
+
+	return (
+		<p
+			{...{ ...rest, ref, id, children }}
+			className={cn(
+				"text-[0.8rem] font-medium text-muted-foreground",
+				error && "text-destructive",
+				className
+			)}
+		/>
+	);
+});
+FormFeedback.displayName = "FormFeedback";
+
 export {
 	useFormField,
 	Form,

@@ -6,14 +6,15 @@ export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 		name: "username",
 		type: "text",
 		label: "Username",
-		placeholder: "Your Username"
+		placeholder: "Your Username",
+		descriptions: "test"
 	},
 	{
 		name: "password",
 		type: "password",
 		label: "Password",
 		placeholder: "Your Password",
-		isButtonLabel: false
+		descriptions: "test"
 	}
 ];
 
