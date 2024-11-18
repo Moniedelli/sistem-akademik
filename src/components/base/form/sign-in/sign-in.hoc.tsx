@@ -1,12 +1,12 @@
 "use client";
 import { useGenericForm, UseGenericForm } from "@/hooks/use-generic-form";
-import { SignInSchema } from "@/schemas/auth.schema";
+import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
 import React from "react";
 
 export interface SignInFormProps {
 	form: UseGenericForm;
+	handleSubmit: (values: SignInSchemaType) => void;
 }
-
 export function SignInHOC<T extends object>(
 	BaseComponents: React.ComponentType<T & SignInFormProps>
 ) {
@@ -21,7 +21,19 @@ export function SignInHOC<T extends object>(
 				password: ""
 			}
 		});
-		return <BaseComponents {...{ ...props, form }} />;
+
+		/**
+		 * @todo - Implement Logic for submit actions
+		 */
+		function handleSubmit(values: SignInSchemaType) {
+			const validatedValues = SignInSchema.safeParse(values);
+			if (!validatedValues) {
+				return undefined;
+			}
+			console.log({ values });
+		}
+
+		return <BaseComponents {...{ ...props, form, handleSubmit }} />;
 	};
 	return Form;
 }

@@ -8,11 +8,12 @@ import { EyeClosedIcon, EyeIcon } from "lucide-react";
 
 interface InputPasswordProps extends React.ComponentPropsWithoutRef<"input"> {
 	buttonVariants?: VariantProps<typeof buttonVariants>;
+	isButtonLabel?: boolean;
 }
 export const InputPassword = React.forwardRef<
 	HTMLInputElement,
 	InputPasswordProps
->(({ className, buttonVariants, ...rest }, ref) => {
+>(({ className, buttonVariants, isButtonLabel = false, ...rest }, ref) => {
 	const [isActive, setActive] = React.useState<boolean>(false);
 	const disabled =
 		rest.value === "" || rest.value === undefined || rest.disabled;
@@ -51,7 +52,9 @@ export const InputPassword = React.forwardRef<
 				) : (
 					<EyeIcon aria-hidden={true} />
 				)}
-				<span>{isActive ? "Hide Password" : "Show Password"}</span>
+				{isButtonLabel && (
+					<span>{isActive ? "Hide Password" : "Show Password"}</span>
+				)}
 			</Button>
 		</div>
 	);

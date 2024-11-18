@@ -4,7 +4,8 @@ import {
 	FormDescription,
 	FormField,
 	FormItem,
-	FormLabel
+	FormLabel,
+	FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn, List } from "@/utils";
@@ -16,6 +17,8 @@ export interface FieldConfig<T extends FieldValues> {
 	type: React.ComponentPropsWithoutRef<"input">["type"];
 	label?: React.ReactNode | string;
 	descriptions?: React.ReactNode | undefined;
+	isButtonLabel?: boolean;
+	placeholder?: string | undefined;
 }
 
 interface FormFieldListProps<T extends FieldValues>
@@ -36,7 +39,10 @@ export function FormFieldList<T extends FieldValues>({
 
 	return (
 		<List lists={fields}>
-			{({ label, name, type, descriptions }, key) => (
+			{(
+				{ label, name, type, descriptions, isButtonLabel, placeholder },
+				key
+			) => (
 				<FormField
 					key={key}
 					name={name}
@@ -46,9 +52,18 @@ export function FormFieldList<T extends FieldValues>({
 							{label && <FormLabel>{label}</FormLabel>}
 							<FormControl>
 								{type === "password" ? (
-									<InputPassword {...{ ...field, ...rest }} />
+									<InputPassword
+										{...{
+											...field,
+											...rest,
+											isButtonLabel,
+											placeholder
+										}}
+									/>
 								) : (
-									<Input {...{ ...field, ...rest }} />
+									<Input
+										{...{ ...field, ...rest, placeholder }}
+									/>
 								)}
 							</FormControl>
 							{descriptions && (
@@ -56,6 +71,7 @@ export function FormFieldList<T extends FieldValues>({
 									{descriptions}
 								</FormDescription>
 							)}
+							<FormMessage />
 						</FormItem>
 					)}
 				/>

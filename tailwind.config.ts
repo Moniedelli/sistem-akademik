@@ -59,6 +59,10 @@ const config: Config = {
 					"5": "hsl(var(--chart-5))"
 				}
 			},
+			boxShadow: {
+				"border-muted": "0 0 0 1px hsl(var(--muted))",
+				"border-primary": "0 0 0 1px hsl(var(--primary))"
+			},
 			borderRadius: {
 				lg: "var(--radius)",
 				md: "calc(var(--radius) - 2px)",

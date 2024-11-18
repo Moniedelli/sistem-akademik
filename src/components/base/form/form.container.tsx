@@ -15,16 +15,14 @@ export const FormContainer = <T extends FieldValues>({
 	className,
 	...rest
 }: FormContainerProps<T>) => {
-	function onSubmit() {
-		return handleSubmit
-			? form.handleSubmit(
-					(data: T) => handleSubmit(data),
-					(error: FieldErrors<T>) => {
-						console.error("Form submission error :", { ...error });
-					}
-				)
-			: undefined;
-	}
+	const onSubmit = handleSubmit
+		? form.handleSubmit(
+				(data: T) => handleSubmit(data),
+				(error: FieldErrors<T>) => {
+					console.error("Form submission error :", { ...error });
+				}
+			)
+		: undefined;
 
 	return (
 		<Form {...form}>
