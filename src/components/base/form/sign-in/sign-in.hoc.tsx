@@ -1,7 +1,7 @@
 "use client";
-import { useGenericForm, UseGenericForm } from "@/hooks/use-generic-form";
-import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
 import React from "react";
+import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
+import { UseGenericForm, useGenericForm } from "@/hooks";
 
 export interface SignInFormProps {
 	form: UseGenericForm;
