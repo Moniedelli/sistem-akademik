@@ -6,6 +6,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
+import { SIGN_CONTENT } from "@/constants";
 
 export default function SignInPage() {
 	const CSSVariables = {
@@ -19,12 +20,14 @@ export default function SignInPage() {
 			className="container flex h-screen min-h-screen w-full items-center justify-center py-8">
 			<section className="grid h-full w-full grid-cols-2">
 				<div className="shadow-border-muted hidden rounded-l-md bg-card md:block">
-					Image
+					{SIGN_CONTENT.IMAGE_URL}
 				</div>
 				<Card className="shadow-border-muted col-span-full my-auto flex h-fit flex-col justify-center rounded-md border-none md:col-span-1 md:h-full md:rounded-l-none">
 					<CardHeader className="md:pt-0">
-						<CardTitle>Title</CardTitle>
-						<CardDescription>Descriptions</CardDescription>
+						<CardTitle>{SIGN_CONTENT.FORM_TITLE}</CardTitle>
+						<CardDescription>
+							{SIGN_CONTENT.FORM_DESCRIPTIONS}
+						</CardDescription>
 					</CardHeader>
 					<SignInForm />
 				</Card>

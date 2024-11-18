@@ -16,3 +16,9 @@ export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 		isButtonLabel: false
 	}
 ];
+
+export const SIGN_CONTENT = {
+	FORM_TITLE: "Form Title",
+	FORM_DESCRIPTIONS: "Form Descriptions",
+	IMAGE_URL: "Image url"
+};
