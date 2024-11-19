@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/libs/utils";
 import { VariantProps } from "class-variance-authority";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { EyeClosedIcon, EyeIcon } from "lucide-react";

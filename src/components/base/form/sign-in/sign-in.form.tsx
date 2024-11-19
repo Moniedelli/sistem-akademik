@@ -18,6 +18,7 @@ import {
 
 export const BaseSignInForm: React.FC<SignInFormProps> = ({
 	form,
+	loading,
 	handleSubmit
 }) => {
 	return (
@@ -29,7 +30,7 @@ export const BaseSignInForm: React.FC<SignInFormProps> = ({
 					{...{ fields: SIGN_IN_FORM_FIELDS, control: form.control }}
 				/>
 			</div>
-			<Button type="submit">Sign-In</Button>
+			<Button {...{ type: "submit", disabled: loading }}>Sign-In</Button>
 		</FormContainer>
 	);
 };

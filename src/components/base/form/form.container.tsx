@@ -2,7 +2,7 @@
 import React from "react";
 import { Form } from "@/components/ui/form";
 import { FieldErrors, FieldValues, UseFormReturn } from "react-hook-form";
-import { cn } from "@/utils";
+import { cn } from "@/libs/utils";
 
 interface FormContainerProps<T extends FieldValues>
 	extends React.ComponentPropsWithoutRef<"form"> {
@@ -23,7 +23,6 @@ export const FormContainer = <T extends FieldValues>({
 				}
 			)
 		: undefined;
-
 	return (
 		<Form {...form}>
 			<form

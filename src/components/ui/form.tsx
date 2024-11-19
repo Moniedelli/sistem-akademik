@@ -12,7 +12,7 @@ import {
 	useFormContext
 } from "react-hook-form";
 
-import { cn } from "@/utils";
+import { cn } from "@/libs/utils";
 import { Label } from "@/components/ui/label";
 
 const Form = FormProvider;
@@ -60,6 +60,7 @@ const useFormField = () => {
 		formItemId: `${id}-form-item`,
 		formDescriptionId: `${id}-form-item-description`,
 		formMessageId: `${id}-form-item-message`,
+		formFeedbackId: `${id}-form-feedback`,
 		...fieldState
 	};
 };
@@ -180,7 +181,7 @@ export const FormFeedback = React.forwardRef<
 	HTMLParagraphElement,
 	React.ComponentPropsWithoutRef<"p">
 >(({ className, children: prevChildren, ...rest }, ref) => {
-	const { error, formMessageId: id } = useFormField();
+	const { error, formFeedbackId: id } = useFormField();
 	const children = error ? String(error.message) : prevChildren;
 
 	return (
