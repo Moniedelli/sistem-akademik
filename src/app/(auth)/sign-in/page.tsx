@@ -8,6 +8,7 @@ import {
 import { SIGN_CONTENT } from "@/constants";
 import { SignInForm } from "@/components/base/form";
 import { cn } from "@/libs/utils";
+
 export default function SignInPage() {
 	return (
 		<main className="container flex h-screen min-h-screen w-full items-center justify-center py-8">

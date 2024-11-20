@@ -6,7 +6,7 @@ import {
 	FormFeedback,
 	FormField,
 	FormItem,
-	FormLabel
+	FormLabel,
 } from "@/components/ui/form";
 import { Input, PasswordInput } from "@/components/ui/input";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
@@ -14,7 +14,7 @@ import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 export interface FieldConfig<T extends FieldValues> {
 	name: Path<T>;
 	type: React.ComponentPropsWithoutRef<"input">["type"];
-	label?: React.ReactNode | string;
+	label: string;
 	descriptions?: string;
 	placeholder?: string | undefined;
 }
@@ -50,7 +50,7 @@ export function FormFieldList<T extends FieldValues>({
 										{...{
 											...field,
 											...rest,
-											placeholder
+											placeholder,
 										}}
 									/>
 								) : (
