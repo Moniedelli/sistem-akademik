@@ -1,11 +1,11 @@
 "use client";
-import { apiClient } from "@/libs/api.client";
+import { axiosInstance } from "@/libs";
 import { SignInSchemaType } from "@/schemas/auth.schema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 async function signInFn(values: SignInSchemaType) {
-	const response = await apiClient.post("/auth/login", values);
+	const response = await axiosInstance.post("/auth/login", values);
 	return response;
 }
 
