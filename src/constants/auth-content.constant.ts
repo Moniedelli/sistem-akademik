@@ -7,19 +7,24 @@ export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 		type: "text",
 		label: "Username",
 		placeholder: "Your Username",
-		descriptions: "test"
+		descriptions: "test",
 	},
 	{
 		name: "password",
 		type: "password",
 		label: "Password",
 		placeholder: "Your Password",
-		descriptions: "test"
-	}
+		descriptions: "test",
+	},
 ];
+export const SIGN_IN_FORM_DEFAULT_VALUES: SignInSchemaType = {
+	password: "",
+	username: "",
+};
 
 export const SIGN_CONTENT = {
 	FORM_TITLE: "Form Title",
 	FORM_DESCRIPTIONS: "Form Descriptions",
-	IMAGE_URL: "Image url"
+	IMAGE_URL: "Image url",
+	FORM_LOGO: "url",
 };

@@ -2,10 +2,10 @@ import * as z from "zod";
 
 export const SignInSchema = z.object({
 	username: z.string().min(1, {
-		message: "Username is required!"
+		message: "Username is required!",
 	}),
 	password: z.string().min(1, {
-		message: "Password is required"
-	})
+		message: "Password is required",
+	}),
 });
 export type SignInSchemaType = z.infer<typeof SignInSchema>;

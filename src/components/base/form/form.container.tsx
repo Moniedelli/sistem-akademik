@@ -11,25 +11,32 @@ interface FormContainerProps<T extends FieldValues>
 }
 export const FormContainer = <T extends FieldValues>({
 	form,
-	handleSubmit,
+	handleSubmit: onValid,
 	className,
 	...rest
 }: FormContainerProps<T>) => {
-	const onSubmit = handleSubmit
-		? form.handleSubmit(
-				(data: T) => handleSubmit(data),
-				(error: FieldErrors<T>) => {
-					console.error("Form submission error :", { ...error });
-				}
-			)
+	/**
+	 * onInvalid only for development purpose
+	 * @template T - The generic type for the field error
+	 * @param {FieldErrors<T>} error - The errors data
+	 */
+	const onInvalid = (error: FieldErrors<T>) => {
+		if (process.env.NODE_ENV !== "production") {
+			console.error("Form submission error:", error);
+		}
+	};
+
+	const onSubmit = onValid
+		? form.handleSubmit(onValid, onInvalid)
 		: undefined;
+
 	return (
 		<Form {...form}>
 			<form
 				{...{
 					...rest,
 					onSubmit,
-					className: cn("space-y-4", className)
+					className: cn("space-y-4", className),
 				}}
 			/>
 		</Form>

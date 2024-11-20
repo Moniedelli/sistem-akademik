@@ -1,7 +1,6 @@
 import axios from "axios";
-
-const baseURL = process.env.NEXT_PUBLIC_DB_HOST;
+import { API_ROUTE } from "@/constants";
 
 export const axiosInstance = axios.create({
-	baseURL,
+	baseURL: API_ROUTE.BASE_URL,
 });

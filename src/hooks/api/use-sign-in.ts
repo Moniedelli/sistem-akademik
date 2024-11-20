@@ -1,28 +1,33 @@
 "use client";
-import { axiosInstance } from "@/libs";
-import { SignInSchemaType } from "@/schemas/auth.schema";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { axiosInstance } from "@/libs";
+import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { API_ROUTE } from "@/constants";
 
 async function signInFn(values: SignInSchemaType) {
-	const response = await axiosInstance.post("/auth/login", values);
+	const validatedValues = SignInSchema.safeParse(values);
+	/// Validated the values
+	if (!validatedValues.success) {
+		throw new Error("Error occurred");
+	}
+	const response = await axiosInstance.post(
+		API_ROUTE.AUTH.SIGN_IN.POST,
+		validatedValues.data,
+	);
 	return response;
 }
 
-export function useSignIn(redirect: string) {
+export function useSignIn() {
 	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationFn: signInFn,
-		onMutate(variables) {
-			console.log(variables);
-		},
 		onSuccess: () => {
-			window.location.replace(redirect);
+			window.location.replace(API_ROUTE.AUTH.SIGN_IN.REDIRECT);
 		},
-		onError(error, variables, context) {
-			const _error = error as AxiosError;
-			console.log("error", _error.message);
+		onError(error: AxiosError, variables, context) {
+			console.log("error", error);
 		},
 	});
 }

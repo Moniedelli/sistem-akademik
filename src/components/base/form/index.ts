@@ -1,9 +1,10 @@
 /**
  *
  * ----------------------------------------------------------
- * expose All form components
+ * expose the necessary components
  * ----------------------------------------------------------
  *
  */
-export * from "./sign-in";
 export * from "./list";
+export * from "./sign-in.form";
+export * from "./form.container";
