@@ -10,7 +10,7 @@ export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 		descriptions: "test",
 	},
 	{
-		name: "password",
+		name: "password_hash",
 		type: "password",
 		label: "Password",
 		placeholder: "Your Password",
@@ -18,7 +18,7 @@ export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 	},
 ];
 export const SIGN_IN_FORM_DEFAULT_VALUES: SignInSchemaType = {
-	password: "",
+	password_hash: "",
 	username: "",
 };
 

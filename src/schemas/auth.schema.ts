@@ -4,7 +4,7 @@ export const SignInSchema = z.object({
 	username: z.string().min(1, {
 		message: "Username is required!",
 	}),
-	password: z.string().min(1, {
+	password_hash: z.string().min(1, {
 		message: "Password is required",
 	}),
 });
