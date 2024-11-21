@@ -5,7 +5,6 @@ import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
 import { API_ROUTE } from "@/constants";
 import { setCookies } from "@/libs/cookies";
-import { useRouter } from "next/navigation";
 
 type AccountRole = "admin" | "guru" | "siswa";
 interface SignInResponse {
@@ -32,7 +31,6 @@ async function signInFn(values: SignInSchemaType) {
 }
 
 export function useSignIn() {
-	const router = useRouter();
 	return useMutation({
 		mutationFn: signInFn,
 		onSuccess: async ({
@@ -41,15 +39,12 @@ export function useSignIn() {
 				user,
 			},
 		}) => {
-			console.log(user);
-			if (token) {
-				try {
-					await setCookies("auth-token", token);
-					// Issue : not redirect after success login
-					router.replace(API_ROUTE.AUTH.SIGN_IN.REDIRECT);
-				} catch {
-					throw new Error(`Error occurred`);
-				}
+			try {
+				setCookies("auth-token", token);
+				console.log("redirect to:", API_ROUTE.AUTH.SIGN_IN.REDIRECT);
+				window.location.replace(API_ROUTE.AUTH.SIGN_IN.REDIRECT);
+			} catch (error) {
+				throw new Error(`Error occurred`, error);
 			}
 		},
 		onError(error: AxiosError, variables, context) {

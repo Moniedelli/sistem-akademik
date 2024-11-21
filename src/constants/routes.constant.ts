@@ -1,6 +1,7 @@
 export const PREFIX_ROUTES = {
 	HOME: "/",
 	SIGN_IN: "/sign-in",
+	ADMIN: "/admin",
 };
 const API_AUTH_ROUTES = {
 	SIGN_IN: {
