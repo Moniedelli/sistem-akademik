@@ -1,12 +1,14 @@
 import { AUTH_ROUTES, PREFIX_ROUTES, PROTECTED_ROUTES } from "@/constants";
 import { getCookies } from "@/libs/cookies";
+import { Encryption } from "@/libs/modules";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-	const token = await getCookies("auth");
+	const session_token = Encryption.set("session_token");
+	const token = await getCookies(session_token);
+
 	const { nextUrl, url } = request;
 
-	console.log(token);
 	const isInProtectedRoute = PROTECTED_ROUTES.includes(nextUrl.pathname);
 	const isInAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
 
