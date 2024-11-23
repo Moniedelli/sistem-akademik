@@ -15,6 +15,10 @@ export async function setCookies(
 export async function getCookies(...args: [name: string] | [RequestCookie]) {
 	return cookies().get(...args);
 }
-export async function deleteCookie(key: string) {
-	return cookies().delete(key);
+export async function deleteCookie(
+	...args:
+		| [key: string]
+		| [options: Omit<ResponseCookie, "value" | "expires">]
+) {
+	cookies().delete(...args);
 }

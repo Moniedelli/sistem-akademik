@@ -1,4 +1,6 @@
+import { SignOutButton } from "@/components/base/sign-out.button";
 import { PREFIX_ROUTES } from "@/constants";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -13,6 +15,7 @@ export default function Home() {
 			<Link href={PREFIX_ROUTES.get("ADMIN")}>
 				{PREFIX_ROUTES.get("ADMIN")}
 			</Link>
+			<SignOutButton />
 		</main>
 	);
 }
