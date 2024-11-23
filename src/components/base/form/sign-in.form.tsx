@@ -31,7 +31,9 @@ export const SignInForm: React.FC = () => {
 					{...{ fields: SIGN_IN_FORM_FIELDS, control: form.control }}
 				/>
 			</div>
-			<Button {...{ type: "submit", disabled }}>Sign-In</Button>
+			<Button {...{ type: "submit", disabled }} className="w-full">
+				Sign-In
+			</Button>
 		</FormContainer>
 	);
 };

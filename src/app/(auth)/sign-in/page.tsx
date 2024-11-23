@@ -13,15 +13,18 @@ export default function SignInPage() {
 	return (
 		<main className="container flex h-screen min-h-screen w-full items-center justify-center py-8">
 			<Card
+				asChild
 				className={cn("overflow-hidden shadow-sm", "w-full md:w-1/2")}>
-				<div className="h-48 w-full bg-blue-500"></div>
-				<CardHeader>
-					<CardTitle>{SIGN_CONTENT.FORM_TITLE}</CardTitle>
-					<CardDescription>
-						{SIGN_CONTENT.FORM_DESCRIPTIONS}
-					</CardDescription>
-				</CardHeader>
-				<SignInForm />
+				<section>
+					<div className="h-48 w-full bg-blue-500"></div>
+					<CardHeader>
+						<CardTitle>{SIGN_CONTENT.FORM_TITLE}</CardTitle>
+						<CardDescription>
+							{SIGN_CONTENT.FORM_DESCRIPTIONS}
+						</CardDescription>
+					</CardHeader>
+					<SignInForm />
+				</section>
 			</Card>
 		</main>
 	);
