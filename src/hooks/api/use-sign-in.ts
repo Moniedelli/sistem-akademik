@@ -43,6 +43,7 @@ export function useSignIn() {
 				path: API_ROUTE.COOKIE_PATH,
 				expires: COOKIE_EXPIRES,
 				secure: process.env.NODE_ENV === "production",
+				httpOnly: true,
 				sameSite:
 					process.env.NODE_ENV === "production" ? "strict" : "lax",
 			});
