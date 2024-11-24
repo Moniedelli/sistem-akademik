@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { API_ROUTE, AUTH_COOKIE_NAME } from "@/constants";
 import { getCookies } from "@/libs/cookies";
-import { Encryption } from "@/libs/modules";
 import { assertIsUndefined } from "@/libs/utils";
 
 export const axiosInstance = axios.create({
