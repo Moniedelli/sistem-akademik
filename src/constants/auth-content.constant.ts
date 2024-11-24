@@ -3,6 +3,10 @@ import { Encryption } from "@/libs/modules";
 import { SignInSchemaType } from "@/schemas/auth.schema";
 
 export const AUTH_COOKIE_NAME = Encryption.set("session_token");
+export const AUTH_COOKIE_EXPIRES = new Date(
+	Date.now() + 7 * 24 * 60 * 60 * 1_000,
+); /// 7 Days
+
 export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 	{
 		name: "username",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { API_ROUTE, AUTH_COOKIE_NAME, COOKIE_EXPIRES } from "@/constants";
+import { API_ROUTE, AUTH_COOKIE_NAME, AUTH_COOKIE_EXPIRES } from "@/constants";
 import { setCookies } from "@/libs/cookies";
 import { signInFn } from "@/libs/services";
 
@@ -15,7 +15,7 @@ export function useSignIn() {
 			 */
 			await setCookies(AUTH_COOKIE_NAME, data.data.token, {
 				path: API_ROUTE.COOKIE_PATH,
-				expires: COOKIE_EXPIRES,
+				expires: AUTH_COOKIE_EXPIRES,
 				secure: process.env.NODE_ENV === "production",
 				httpOnly: true,
 				sameSite:
