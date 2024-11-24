@@ -3,10 +3,10 @@ import { SignOutButton } from "@/components/base/sign-out.button";
 
 export default function DashboardPage() {
 	return (
-		<main>
+		<section>
 			<p>test</p>
 			<SignOutButton />
 			<TestAuthorization />
-		</main>
+		</section>
 	);
 }
