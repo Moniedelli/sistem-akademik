@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { API_ROUTE } from "@/constants";
+import { API_ROUTE, AUTH_COOKIE_NAME } from "@/constants";
 import { getCookies } from "@/libs/cookies";
 import { Encryption } from "@/libs/modules";
 import { assertIsUndefined } from "@/libs/utils";
@@ -14,8 +14,7 @@ export const authorizeAxiosInstance = axios.create({
 
 authorizeAxiosInstance.interceptors.request.use(
 	async (config) => {
-		const session_token = Encryption.set("session_token");
-		const token = await getCookies(session_token);
+		const token = await getCookies(AUTH_COOKIE_NAME);
 		assertIsUndefined(token);
 
 		config.headers.Authorization = `Bearer ${token.value}`;
