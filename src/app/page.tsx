@@ -1,3 +1,4 @@
+import { TestAuthorization } from "@/app/admin/_components/test-authorization";
 import { SignOutButton } from "@/components/base/sign-out.button";
 import { PREFIX_ROUTES } from "@/constants";
 
@@ -16,6 +17,7 @@ export default function Home() {
 				{PREFIX_ROUTES.get("ADMIN")}
 			</Link>
 			<SignOutButton />
+			<TestAuthorization />
 		</main>
 	);
 }

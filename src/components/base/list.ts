@@ -8,7 +8,7 @@ interface ListProps<T> {
 export function List<T>({ lists, children, render }: ListProps<T>) {
 	if (children) {
 		return React.Children.toArray(
-			lists?.map((list, index) => children(list, index))
+			lists?.map((list, index) => children(list, index)),
 		);
 	}
 

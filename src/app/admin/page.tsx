@@ -1,3 +1,4 @@
+import { TestAuthorization } from "@/app/admin/_components/test-authorization";
 import { SignOutButton } from "@/components/base/sign-out.button";
 import { getCookies } from "@/libs/cookies";
 import { Encryption } from "@/libs/modules";
@@ -9,6 +10,7 @@ export default async function Page() {
 	if (token) {
 		return (
 			<div className="container">
+				<TestAuthorization />
 				<table>
 					<thead>
 						<tr>

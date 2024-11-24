@@ -1,34 +1,10 @@
 "use client";
-import { axiosInstance } from "@/libs";
-import { SignInSchema, SignInSchemaType } from "@/schemas/auth.schema";
+
 import { useMutation } from "@tanstack/react-query";
 import { API_ROUTE, COOKIE_EXPIRES } from "@/constants";
 import { setCookies } from "@/libs/cookies";
 import { Encryption } from "@/libs/modules";
-
-type AccountRole = "admin" | "guru" | "siswa";
-interface SignInResponse {
-	data: {
-		token: string;
-	};
-	user: {
-		username: string;
-		role: AccountRole;
-	};
-	message: string;
-}
-async function signInFn(values: SignInSchemaType) {
-	const validatedValues = SignInSchema.safeParse(values);
-	/// Validated the values
-	if (!validatedValues.success) {
-		throw new Error("Validation Error");
-	}
-	const response = await axiosInstance.post<SignInResponse>(
-		API_ROUTE.AUTH.SIGN_IN.POST,
-		validatedValues.data,
-	);
-	return response.data;
-}
+import { signInFn } from "@/libs/services";
 
 export function useSignIn() {
 	return useMutation({
