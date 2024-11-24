@@ -1,12 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { AUTH_COOKIE_NAME } from "@/constants";
 import { deleteCookie } from "@/libs/cookies";
-import { Encryption } from "@/libs/modules";
 
 export const SignOutButton = () => {
 	async function handleClick() {
-		const session_token = Encryption.set("session_token");
-		await deleteCookie(session_token);
+		await deleteCookie(AUTH_COOKIE_NAME);
 		window.location.reload();
 	}
 	return (

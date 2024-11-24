@@ -1,20 +1,26 @@
-import { AUTH_ROUTES, PREFIX_ROUTES, PROTECTED_ROUTES } from "@/constants";
+import {
+	AUTH_COOKIE_NAME,
+	AUTH_ROUTES,
+	PREFIX_ROUTES,
+	PROTECTED_ROUTES,
+} from "@/constants";
 import { getCookies } from "@/libs/cookies";
-import { Encryption } from "@/libs/modules";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-	const session_token = Encryption.set("session_token");
-	const token = await getCookies(session_token);
+	const token = await getCookies(AUTH_COOKIE_NAME);
 
 	const { nextUrl, url } = request;
 
 	const isInProtectedRoute = PROTECTED_ROUTES.includes(nextUrl.pathname);
 	const isInAuthRoute = AUTH_ROUTES.includes(nextUrl.pathname);
 
+	console.log("routes", nextUrl.pathname);
 	if (isInAuthRoute && token) {
 		console.log("trigger auth route");
-		return NextResponse.redirect(new URL(PREFIX_ROUTES.get("ADMIN"), url));
+		return NextResponse.redirect(
+			new URL(PREFIX_ROUTES.get("DASHBOARD"), url),
+		);
 	}
 
 	if (isInProtectedRoute && !token) {
@@ -26,5 +32,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/admin/:path*", "/sign-in"],
+	matcher: ["/dashboard/:path*", "/sign-in"],
 };

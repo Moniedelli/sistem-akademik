@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--sidebar-width-closed: 16rem;
+	--sidebar-width-open: 20rem;
+}
+
+@layer components {
+	.dashboard-container {
+		@apply flex max-h-screen min-h-svh overflow-y-hidden;
+	}
+	.sidebar {
+		@apply bg-foreground;
+		width: var(--sidebar-width-closed);
+	}
+	.sidebar[data-expanded="true"] {
+		width: var(--sidebar-width-open);
+		background-color: brown;
+	}
+}

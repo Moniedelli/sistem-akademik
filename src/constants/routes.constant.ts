@@ -4,16 +4,20 @@ export const PREFIX_ROUTES = Routes.create({
 	HOME: "/",
 	SIGN_IN: "/sign-in",
 	ADMIN: "/admin",
+	DASHBOARD: "/dashboard",
 });
 
 /// Validation ROutes
-export const PROTECTED_ROUTES = [PREFIX_ROUTES.get("ADMIN")];
+export const PROTECTED_ROUTES = [
+	PREFIX_ROUTES.get("ADMIN"),
+	PREFIX_ROUTES.get("DASHBOARD"),
+];
 export const AUTH_ROUTES = [PREFIX_ROUTES.get("SIGN_IN")];
 
 /// Define API routes
 const API = Routes.create({
 	BASE_URL: process.env.NEXT_PUBLIC_DB_HOST,
-	SIGN_IN_REDIRECT: PREFIX_ROUTES.get("ADMIN"),
+	SIGN_IN_REDIRECT: PREFIX_ROUTES.get("DASHBOARD"),
 	SIGN_IN: "/auth/login",
 	USERS: "/users",
 	SISWA: "/siswa",

@@ -7,37 +7,36 @@ interface DefaultDetails {
 	no_telepon: string;
 }
 
-interface GuruDetail extends DefaultDetails {
+export interface GuruDetail extends DefaultDetails {
 	id_guru: number;
 	status_guru: string;
 }
-interface SiswaDetail extends DefaultDetails {
+export interface SiswaDetail extends DefaultDetails {
 	id_siswa: number;
 	status_siswa: string;
 }
 
-type UserDetails<R extends Roles> = R extends "guru"
+export type UserDetails<R extends Roles> = R extends "guru"
 	? GuruDetail
 	: R extends "siswa"
 		? SiswaDetail
-		: never;
+		: undefined;
 
 interface DefaultResponse<T> {
 	data: T;
 	message: string;
 }
-export interface SignInResponse {
-	data: {
+export interface SignInResponse
+	extends DefaultResponse<{
 		token: string;
-	};
+	}> {
 	user: {
 		username: string;
 		role: Roles;
 	};
-	message: string;
 }
-interface User<R extends Roles> {
-	id: number;
+export interface User<R extends Roles> {
+	id_user: number;
 	username: string;
 	role: R;
 	date_and_time: {

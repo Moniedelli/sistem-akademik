@@ -1,21 +1,19 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { API_ROUTE, COOKIE_EXPIRES } from "@/constants";
+import { API_ROUTE, AUTH_COOKIE_NAME, COOKIE_EXPIRES } from "@/constants";
 import { setCookies } from "@/libs/cookies";
-import { Encryption } from "@/libs/modules";
 import { signInFn } from "@/libs/services";
 
 export function useSignIn() {
 	return useMutation({
 		mutationFn: signInFn,
 		onSuccess: async (data) => {
-			const session_token = Encryption.set("session_token");
-
+			console.log(data.data.token);
 			/**
 			 * This database token only available for protected routes
 			 */
-			await setCookies(session_token, data.data.token, {
+			await setCookies(AUTH_COOKIE_NAME, data.data.token, {
 				path: API_ROUTE.COOKIE_PATH,
 				expires: COOKIE_EXPIRES,
 				secure: process.env.NODE_ENV === "production",

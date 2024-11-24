@@ -1,6 +1,8 @@
 import { FieldConfig } from "@/components/base/form";
+import { Encryption } from "@/libs/modules";
 import { SignInSchemaType } from "@/schemas/auth.schema";
 
+export const AUTH_COOKIE_NAME = Encryption.set("session_token");
 export const SIGN_IN_FORM_FIELDS: Array<FieldConfig<SignInSchemaType>> = [
 	{
 		name: "username",
