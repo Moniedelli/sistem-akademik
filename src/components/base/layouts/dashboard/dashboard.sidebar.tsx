@@ -10,36 +10,9 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import Items from "@/constants/sidebar.constant";
 import Link from "next/link";
 
-const items = [
-	{
-		title: "Home",
-		url: "#",
-		Icon: Home,
-	},
-	{
-		title: "Inbox",
-		url: "#",
-		Icon: Inbox,
-	},
-	{
-		title: "Calendar",
-		url: "#",
-		Icon: Calendar,
-	},
-	{
-		title: "Search",
-		url: "#",
-		Icon: Search,
-	},
-	{
-		title: "Settings",
-		url: "#",
-		Icon: Settings,
-	},
-];
 
 export const DashboardSidebar = () => {
 	return (
@@ -49,7 +22,7 @@ export const DashboardSidebar = () => {
 				<SidebarGroup>
 					<SidebarGroupLabel>Dashboard</SidebarGroupLabel>
 					<SidebarMenu>
-						<List lists={items}>
+						<List lists={Items}>
 							{({ url, Icon, title }, key) => (
 								<SidebarMenuItem key={key}>
 									<SidebarMenuButton asChild>
