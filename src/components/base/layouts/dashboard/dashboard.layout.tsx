@@ -1,13 +1,16 @@
 import React from "react";
 import { DashboardSidebar } from "@/components/base/layouts/dashboard/dashboard.sidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { DashboardContainer } from "@/components/base/layouts/dashboard/dashboard.container";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { DashboardHeader } from "@/components/base/layouts/dashboard/dashboard.header";
 
 export const DashboardLayout = ({ children }: React.PropsWithChildren) => {
 	return (
 		<SidebarProvider defaultOpen={false}>
 			<DashboardSidebar />
-			<DashboardContainer>{children}</DashboardContainer>
+			<SidebarInset>
+				<DashboardHeader />
+				{children}
+			</SidebarInset>
 		</SidebarProvider>
 	);
 };

@@ -1,51 +1,80 @@
-import { BookOpenText, CalendarCheck2, ChartCandlestick, Contact, GraduationCap, Home, Presentation, Shapes, Users } from "lucide-react";
+import { PREFIX_ROUTES } from "@/constants/routes.constant";
+import {
+	BookOpenText,
+	CalendarCheck2,
+	ChartCandlestick,
+	Contact,
+	GraduationCap,
+	Home,
+	LucideProps,
+	Presentation,
+	Shapes,
+	Users,
+} from "lucide-react";
 
-const Items = [
+export interface SidebarMenuProps {
+	title: string;
+	href: string;
+	Icon: React.ForwardRefExoticComponent<
+		Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+	>;
+}
+
+export const SIDEBAR_ITEM_LIST: Array<
+	SidebarMenuProps & {
+		subMenu?: Array<SidebarMenuProps>;
+	}
+> = [
 	{
 		title: "Halaman Utama",
-		url: "#",
+		href: "#",
 		Icon: Home,
+		subMenu: [
+			{
+				title: "test",
+				Icon: Home,
+				href: PREFIX_ROUTES.get("DASHBOARD"),
+			},
+		],
 	},
 	{
 		title: "Manajemen Users",
-		url: "#",
+		href: PREFIX_ROUTES.get("DASHBOARD"),
 		Icon: Users,
 	},
 	{
 		title: "Management Siswa",
-		url: "#",
+		href: "#",
 		Icon: GraduationCap,
 	},
 	{
 		title: "Management Guru",
-		url: "#",
+		href: "#",
 		Icon: Presentation,
 	},
 	{
 		title: "Management Kelas",
-		url: "#",
+		href: "#",
 		Icon: Shapes,
 	},
-    {
+	{
 		title: "Management Pelajaran",
-		url: "#",
+		href: "#",
 		Icon: BookOpenText,
 	},
-    {
+	{
 		title: "Management Jadwal",
-		url: "#",
+		href: "#",
 		Icon: CalendarCheck2,
 	},
-    {
+	{
 		title: "Management Nilai",
-		url: "#",
+		href: "#",
 		Icon: ChartCandlestick,
 	},
-    {
+	{
 		title: "Management Kehadiran",
-		url: "#",
+		href: "#",
 		Icon: Contact,
 	},
 ];
-
-export default Items;
