@@ -27,7 +27,7 @@ const CollapsibleMenuItem: React.FC<
 	SidebarMenuProps & {
 		subMenu?: Array<SidebarMenuProps>;
 	}
-> = ({ title, Icon, subMenu }) => {
+> = (props) => {
 	const pathname = usePathname();
 
 	return (
@@ -36,16 +36,16 @@ const CollapsibleMenuItem: React.FC<
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton
 						{...{
-							tooltip: title,
+							tooltip: props.title,
 						}}>
-						<Icon />
-						<span>{title}</span>
+						<props.icon />
+						<span>{props.title}</span>
 						<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenuSub>
-						<List lists={subMenu}>
+						<List lists={props.subMenu}>
 							{(item, subKey) => (
 								<SidebarMenuButton
 									key={subKey}
@@ -54,7 +54,7 @@ const CollapsibleMenuItem: React.FC<
 										isActive: pathname === item.href,
 									}}>
 									<Link href={item.href}>
-										<item.Icon />
+										<item.icon />
 										<span>{item.title}</span>
 									</Link>
 								</SidebarMenuButton>
@@ -67,7 +67,7 @@ const CollapsibleMenuItem: React.FC<
 	);
 };
 
-const MenuItem: React.FC<SidebarMenuProps> = ({ title, href, Icon }) => {
+const MenuItem: React.FC<SidebarMenuProps> = (props) => {
 	const pathname = usePathname();
 
 	return (
@@ -75,12 +75,12 @@ const MenuItem: React.FC<SidebarMenuProps> = ({ title, href, Icon }) => {
 			<SidebarMenuButton
 				{...{
 					asChild: true,
-					tooltip: title,
-					isActive: pathname === href,
+					tooltip: props.title,
+					isActive: pathname === props.href,
 				}}>
-				<Link href={href}>
-					<Icon />
-					<span>{title}</span>
+				<Link href={props.href}>
+					<props.icon />
+					<span>{props.title}</span>
 				</Link>
 			</SidebarMenuButton>
 		</SidebarMenuItem>

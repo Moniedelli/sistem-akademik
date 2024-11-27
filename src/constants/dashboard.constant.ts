@@ -15,7 +15,7 @@ import {
 export interface SidebarMenuProps {
 	title: string;
 	href: string;
-	Icon: React.ForwardRefExoticComponent<
+	icon: React.ForwardRefExoticComponent<
 		Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
 	>;
 }
@@ -28,11 +28,11 @@ export const SIDEBAR_ITEM_LIST: Array<
 	{
 		title: "Halaman Utama",
 		href: "#",
-		Icon: Home,
+		icon: Home,
 		subMenu: [
 			{
 				title: "test",
-				Icon: Home,
+				icon: Home,
 				href: PREFIX_ROUTES.get("DASHBOARD"),
 			},
 		],
@@ -40,41 +40,41 @@ export const SIDEBAR_ITEM_LIST: Array<
 	{
 		title: "Manajemen Users",
 		href: PREFIX_ROUTES.get("DASHBOARD"),
-		Icon: Users,
+		icon: Users,
 	},
 	{
 		title: "Management Siswa",
 		href: "#",
-		Icon: GraduationCap,
+		icon: GraduationCap,
 	},
 	{
 		title: "Management Guru",
 		href: "#",
-		Icon: Presentation,
+		icon: Presentation,
 	},
 	{
 		title: "Management Kelas",
 		href: "#",
-		Icon: Shapes,
+		icon: Shapes,
 	},
 	{
 		title: "Management Pelajaran",
 		href: "#",
-		Icon: BookOpenText,
+		icon: BookOpenText,
 	},
 	{
 		title: "Management Jadwal",
 		href: "#",
-		Icon: CalendarCheck2,
+		icon: CalendarCheck2,
 	},
 	{
 		title: "Management Nilai",
 		href: "#",
-		Icon: ChartCandlestick,
+		icon: ChartCandlestick,
 	},
 	{
 		title: "Management Kehadiran",
 		href: "#",
-		Icon: Contact,
+		icon: Contact,
 	},
 ];
